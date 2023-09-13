@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = ["Anton Savenchuk <Anton.Savenchuk@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "*", from = "app" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.4"
+django-environ = "^0.11.2"
+
+[tool.poetry.dev-dependencies]
+ruff = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
