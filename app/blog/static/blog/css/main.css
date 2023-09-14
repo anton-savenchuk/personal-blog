@@ -1,0 +1,404 @@
+/* Markdown */
+:root {
+    --maincolor: #ef5350;
+    --textcolor: #202124;
+    --bordercl: var(--maincolor);
+    --callouctcolor: rgb(5, 80, 174);
+    --hovercolor: var(--maincolor);
+    --darkMaincolor: var(--maincolor);
+    --grey: #888;
+}
+
+html {
+    color: var(--textcolor);
+    font-family: 'JetBrains Mono';
+    font-size: 16px;
+    line-height: 1.6em;
+}
+
+body {
+    display: block;
+    margin: 8px;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+::selection {
+    background: var(--maincolor);
+    color: #fff;
+}
+
+p {
+    line-height: 1.5;
+}
+
+hr {
+    border: 0;
+    border-top: 3px dotted var(--bordercl);
+    margin: 1em 0;
+}
+
+blockquote {
+    border-left: 3px solid var(--bordercl);
+    color: #737373;
+    margin: 0;
+    padding-left: 1em;
+}
+
+a,
+.link {
+    cursor: pointer;
+    border-bottom: 3px solid var(--maincolor);
+    color: inherit;
+    text-decoration: none;
+}
+
+
+a:hover,
+.link:hover,
+.link.active {
+    background-color: var(--hovercolor);
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+    padding-left: 2ch;
+}
+
+ul li {
+    text-indent: -2ch;
+}
+
+ul>li::before {
+    content: '* ';
+    font-weight: bold;
+}
+
+/* Images */
+img {
+    border: 3px solid #f8fafb;
+    max-width: 100%;
+}
+
+figure {
+    box-sizing: border-box;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+figure img {
+    display: block;
+    margin: 2em auto;
+    max-height: 500px;
+}
+
+@media screen and (min-width: 600px) {
+    figure {
+        padding: 0 40px;
+    }
+}
+
+figure h4 {
+    font-size: 1rem;
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+figure h4::before {
+    content: '↳ ';
+}
+
+/* Code blocks */
+.hljs {
+    background: #f8fafb;
+}
+
+code {
+    background-color: #f8fafb;
+    color: var(--grey);
+    padding: .1em .2em;
+}
+
+pre {
+    background-color: #f8fafb;
+    line-height: 1.4;
+    overflow-x: auto;
+    padding: 1em;
+}
+
+pre ::selection {
+    background: rgba(255, 255, 255, 0.2);
+    color: inherit;
+}
+
+pre code {
+    background-color: transparent;
+    color: inherit;
+    font-size: 100%;
+    padding: 0;
+}
+
+/* Containers */
+.content {
+    margin: 0 auto;
+    max-width: 860px;
+    padding: 0 1ch;
+    word-wrap: break-word;
+}
+
+/* Header */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1em 0;
+    line-height: 2.5em;
+}
+
+header .main {
+    font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 1.2rem;
+    margin-top: 3em;
+}
+
+h1::before {
+    color: var(--maincolor);
+    content: '# ';
+}
+
+h2::before {
+    color: var(--maincolor);
+    content: '## ';
+}
+
+h3::before {
+    color: var(--maincolor);
+    content: '### ';
+}
+
+h4::before {
+    color: var(--maincolor);
+    content: '#### ';
+}
+
+h5::before {
+    color: var(--maincolor);
+    content: '##### ';
+}
+
+h6::before {
+    color: var(--maincolor);
+    content: '###### ';
+}
+
+.page-header {
+    font-size: 3em;
+    font-weight: bold;
+    line-height: 100%;
+    margin: 4rem 0px 1rem 0px;
+}
+
+.list-item {
+    margin-top: 3em;
+}
+
+.meta {
+    color: var(--grey);
+    font-size: 14px;
+    letter-spacing: -0.5px;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+/* Paginator */
+ul.pagination {
+    padding-left: 0ch;
+    margin-top: 3rem;
+}
+
+.page-item .link {
+    padding: 0 .5ch;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    align-items: center;
+    border-top: 0.2rem dashed var(--maincolor);
+    padding: 2rem 0rem;
+    margin-top: 3rem;
+}
+
+.soc {
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+}
+
+.border {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid;
+}
+
+.footer-info {
+    padding: var(--footer-padding);
+}
+
+/* Common */
+.title h1 {
+    margin-bottom: 0;
+}
+
+
+/* Posts */
+article .title {
+    margin-bottom: .5em;
+}
+
+
+/* Callout */
+.callout {
+    background-color: var(--callouctcolor);
+    color: #fff;
+    padding: 1em;
+}
+
+.callout p {
+    font-family: 'IBM Plex Mono', monospace;
+    margin: 0;
+}
+
+.callout a {
+    border-bottom: 3px solid #fff;
+}
+
+.callout a:hover {
+    background-color: #fff;
+    color: var(--callouctcolor);
+}
+
+.site-description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tags a {
+    border-bottom: 3px solid var(--maincolor);
+}
+
+.tags a:hover {
+    color: white;
+    background-color: var(--hovercolor);
+}
+
+svg {
+    max-height: 15px;
+}
+
+.soc:hover {
+    color: white;
+}
+
+.draft-label {
+    color: var(--bordercl);
+    text-decoration: none;
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin-left: 6px;
+    background-color: #f9f2f4;
+}
+
+pre {
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+
+pre code[class*="language-"] {
+    -webkit-overflow-scrolling: touch;
+}
+
+pre code[class*="language-"]::before {
+    color: var(--grey);
+    font-size: 12px;
+    letter-spacing: 0.025rem;
+    padding: 0.1rem 0.5rem;
+    position: absolute;
+    right: 1rem;
+    top: .5rem;
+    text-align: right;
+    text-transform: capitalize;
+}
+
+pre code[class*=language-JavaScript]::before,
+pre code[class*=language-javascript]::before,
+pre code[class*="language-js"]::before {
+    content: 'JavaScript';
+}
+
+pre code[class*='language-yml']::before,
+pre code[class*='language-yaml']::before {
+    content: 'YAML';
+}
+
+pre code[class*='language-shell']::before,
+pre code[class*='language-bash']::before,
+pre code[class*='language-sh']::before {
+    content: 'Shell';
+}
+
+pre code[class*='language-json']::before {
+    content: 'JSON';
+}
+
+pre code[class*='language-python']::before,
+pre code[class*='language-py']::before {
+    content: 'Python';
+}
+
+pre code[class*='language-css']::before {
+    content: 'CSS';
+}
+
+pre code[class*='language-go']::before {
+    content: 'Go';
+}
+
+pre code[class*='language-django']::before {
+    content: 'Django';
+}
+
+pre code[class*='language-md']::before {
+    content: 'Markdown';
+}
+
+/* table */
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table th {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+    font-size: large;
+}
+
+table td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}

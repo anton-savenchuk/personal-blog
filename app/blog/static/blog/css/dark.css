@@ -1,0 +1,166 @@
+body {
+    color: white;
+    background-color: #202124;
+}
+
+::-moz-selection {
+    background: lightblue;
+    color: #fff;
+}
+
+::selection {
+    background: var(--maincolor);
+    color: #fff;
+}
+
+hr {
+    border-top: 3px dotted lightblue;
+}
+
+.hljs {
+    background: #22272e;
+}
+
+code {
+    background-color: #22272e;
+    color: #adbac7;
+}
+
+pre {
+    background-color: #22272e;
+}
+
+blockquote {
+    border-color: lightblue;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #ddd;
+}
+
+h1::before {
+    color: var(--darkMaincolor);
+    content: "# ";
+}
+
+h2::before {
+    color: var(--darkMaincolor);
+    content: "## ";
+}
+
+h3::before {
+    color: var(--darkMaincolor);
+    content: "### ";
+}
+
+h4::before {
+    color: var(--darkMaincolor);
+    content: "#### ";
+}
+
+h5::before {
+    color: var(--darkMaincolor);
+    content: "##### ";
+}
+
+h6::before {
+    color: var(--darkMaincolor);
+    content: "###### ";
+}
+
+a {
+    border-bottom: 3px solid var(--darkMaincolor);
+    color: inherit;
+}
+
+a:hover {
+    background-color: var(--darkMaincolor);
+    color: black;
+}
+
+.site-description a {
+    color: #ddd;
+}
+
+.site-description a:hover {
+    color: black;
+}
+
+.tags a {
+    border-bottom: 3px solid var(--darkMaincolor);
+}
+
+.tags a:hover {
+    background-color: var(--darkMaincolor);
+    color: black;
+}
+
+.site-title a {
+    color: white;
+    text-decoration: none !important;
+}
+
+.header nav,
+.footer {
+    border-color: #22272e;
+}
+
+pre {
+    background-color: #22272e;
+}
+
+.soc:hover {
+    color: black;
+}
+
+.draft-label {
+    color: var(--darkMaincolor);
+    background-color: lightblue;
+}
+
+pre code[class*=language-JavaScript]::before,
+pre code[class*=language-javascript]::before,
+pre code[class*="language-js"]::before {
+    content: 'JavaScript';
+}
+
+pre code[class*='language-yml']::before,
+pre code[class*='language-yaml']::before {
+    content: 'YAML';
+}
+
+pre code[class*='language-shell']::before,
+pre code[class*='language-bash']::before,
+pre code[class*='language-sh']::before {
+    content: 'Shell';
+}
+
+pre code[class*='language-json']::before {
+    content: 'JSON';
+}
+
+pre code[class*='language-python']::before,
+pre code[class*='language-py']::before {
+    content: 'Python';
+}
+
+pre code[class*='language-css']::before {
+    content: 'CSS';
+}
+
+pre code[class*='language-go']::before {
+    content: 'Go';
+}
+
+pre code[class*='language-django']::before {
+    content: 'Django';
+}
+
+pre code[class*='language-md']::before {
+    content: 'Markdown';
+}

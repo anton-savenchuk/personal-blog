@@ -1,0 +1,13 @@
+{% load static %}
+<header>
+    <div class="main">
+        <a class="link" href="{% url 'home' %}">/LearnPy</a>
+    </div>
+    <nav>
+    {% for menu_item in menu %}
+        <a class="link" href="{% url menu_item.url_name %}">{{ menu_item.title }}</a>
+    {% endfor %}
+        | <span class="link" id="dark-mode-toggle" onclick="toggleTheme()"></span>
+        <script src="{% static 'blog/js/themetoggle.js' %}"></script>
+    </nav>
+</header>
