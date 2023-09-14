@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ title }}{% endblock%}
+
+{% block content %}
+    <div class="title">
+        <h1 class="page-header">{{ title }}</h1>
+    </div>
+    <main class="list">
+    {% for post in posts %}
+        <section class="list-item">
+            <h2 class="title">
+                <a class="link" href="#">{{ post.title }}</a>
+            </h2>
+            <div class="meta">
+                <time>
+                {% if post.time_create|date:"d.m.y" == post.time_update|date:"d.m.y" %}
+                    {{ post.time_create|date:"d.m.y" }}
+                {% else %}
+                    {{ post.time_update|date:"d.m.y" }}
+                {% endif %}
+                </time>
+            </div>
+            <div class="description">
+            {{ post.short_description|safe|truncatewords_html:45 }}
+            </div>
+            <a class="link" href="#">Читать дальше →</a>
+        </section>
+        {% empty %}
+        <section class="list-item">
+            <div class="description">
+                К сожалению, нет результатов
+            </div>
+        </section>
+    {% endfor %}
+    </main>
+{% endblock %}
