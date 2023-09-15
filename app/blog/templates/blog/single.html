@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ post.title }}{% endblock%}
+
+{% block content %}
+<main>
+    <article>
+        <div class="title">
+            <h1 class="title page-header">{{ post.title }}</h1>
+            <div class="meta">
+                <time>
+                {% if post.time_create|date:"d.m.y" == post.time_update|date:"d.m.y" %}
+                Posted on {{ post.time_create|date:"d.m.y" }}
+                {% else %}
+                Updated on {{ post.time_update|date:"d.m.y" }}
+                {% endif %}
+                </time>
+            </div>
+        </div>
+        <section class="body">
+            {% if post.thumbnail %}
+            <figure><img src="{{ post.thumbnail.url }}" alt="{{ post.title }}"></figure>
+            {% endif %}
+            {{ post.full_description|safe }}
+        </section>
+    </article>
+</main>
+{% endblock %}

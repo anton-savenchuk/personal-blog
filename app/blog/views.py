@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from .models import Post
 
@@ -28,3 +28,20 @@ class PostListView(ListView):
     def get_queryset(self):
         """Return the list of items for this view."""
         return Post.objects.filter(is_published=True)
+
+
+class PostDetailView(DetailView):
+    """Single post model view."""
+
+    model = Post
+    template_name = "blog/single.html"
+    context_object_name = "post"
+    slug_url_kwarg = "post_slug"
+
+    def get_context_data(self, **kwargs):
+        """Return a dictionary to use as a template context."""
+        context = super().get_context_data(**kwargs)
+        context["title"] = self.object.title
+        context["menu"] = menu
+
+        return context
