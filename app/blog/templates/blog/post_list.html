@@ -9,7 +9,7 @@
     {% for post in posts %}
         <section class="list-item">
             <h2 class="title">
-                <a class="link" href="#">{{ post.title }}</a>
+                <a class="link" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
             </h2>
             <div class="meta">
                 <time>
@@ -23,7 +23,7 @@
             <div class="description">
             {{ post.short_description|safe|truncatewords_html:45 }}
             </div>
-            <a class="link" href="#">Читать дальше →</a>
+            <a class="link" href="{{ post.get_absolute_url }}">Читать дальше →</a>
         </section>
         {% empty %}
         <section class="list-item">
