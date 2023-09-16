@@ -49,6 +49,13 @@ class Post(models.Model):
         default=False,
         verbose_name="Закреплено",
     )
+    category = models.ForeignKey(
+        to="Category",
+        on_delete=models.PROTECT,
+        null=True,
+        db_index=True,
+        verbose_name="Категория",
+    )
 
     class Meta:
         """Sorting, model name in the admin panel, table with data."""
@@ -65,3 +72,30 @@ class Post(models.Model):
     def get_absolute_url(self):
         """Return post url."""
         return reverse("post", kwargs={"post_slug": self.slug})
+
+
+class Category(models.Model):
+    """Category model."""
+
+    title = models.CharField(
+        max_length=255,
+        db_index=True,
+        verbose_name="Категория",
+    )
+    slug = models.SlugField(
+        max_length=255,
+        unique=True,
+        db_index=True,
+        verbose_name="url category",
+    )
+
+    class Meta:
+        """Sorting, model name in the admin panel, table with data."""
+
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+        ordering = ["title"]
+
+    def __str__(self):
+        """Return the string representation of the object as the category title."""
+        return self.title
