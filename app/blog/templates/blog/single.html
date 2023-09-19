@@ -14,6 +14,7 @@
                 Updated on {{ post.time_update|date:"d.m.y" }}
                 {% endif %}
                 </time>
+                <span>| category: <a class="post-category" href="{{ post.category.get_absolute_url }}">{{ post.category.title }}</a></span>
             </div>
         </div>
         <section class="body">

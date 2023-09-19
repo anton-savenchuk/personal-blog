@@ -99,3 +99,7 @@ class Category(models.Model):
     def __str__(self):
         """Return the string representation of the object as the category title."""
         return self.title
+
+    def get_absolute_url(self):
+        """Return category url."""
+        return reverse("category", kwargs={"category_slug": self.slug})

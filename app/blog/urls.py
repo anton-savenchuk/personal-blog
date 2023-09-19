@@ -9,4 +9,9 @@ urlpatterns = [
         view=views.PostDetailView.as_view(),
         name="post",
     ),
+    path(
+        route="category/<slug:category_slug>/",
+        view=views.CategoryPostListView.as_view(),
+        name="category",
+    ),
 ]

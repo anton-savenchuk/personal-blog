@@ -19,7 +19,7 @@
                     {{ post.time_update|date:"d.m.y" }}
                 {% endif %}
                 </time>
-                <span>| category: <a class="post-category" href="#">{{ post.category.title }}</a></span>
+                <span>| category: <a class="post-category" href="{{ post.category.get_absolute_url }}">{{ post.category.title }}</a></span>
             </div>
             <div class="description">
             {{ post.short_description|safe|truncatewords_html:45 }}
