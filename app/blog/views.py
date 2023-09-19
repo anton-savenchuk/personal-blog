@@ -3,6 +3,8 @@ from django.views.generic import DetailView, ListView
 
 from .models import Category, Post
 
+PAGINATION_RANGE = 3
+
 menu = [
     {"title": "/Все посты", "url_name": "home"},
     {"title": "/О сайте", "url_name": "home"},
@@ -16,6 +18,7 @@ class PostListView(ListView):
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts"
+    paginate_by = PAGINATION_RANGE
 
     def get_context_data(self, **kwargs):
         """Return a dictionary to use as a template context."""
@@ -54,6 +57,7 @@ class CategoryPostListView(ListView):
     template_name = "blog/post_list.html"
     context_object_name = "posts"
     allow_empty = False
+    paginate_by = PAGINATION_RANGE
 
     def get_context_data(self, **kwargs):
         """Return a dictionary to use as a template context."""

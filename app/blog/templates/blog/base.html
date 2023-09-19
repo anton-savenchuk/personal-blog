@@ -5,6 +5,9 @@
         <div class="content">
 {% include 'blog/include/header.html' %}
 {% block content %}CONTENT{% endblock %}
+{% if is_paginated %}
+{% include 'blog/include/paginator.html' %}
+{% endif %}
 {% include 'blog/include/footer.html' %}
         </div>
     </body>

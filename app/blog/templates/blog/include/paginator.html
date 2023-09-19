@@ -1,0 +1,31 @@
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+    {% if page_obj.has_previous %}
+        <span class="page-item"><a href="?page={{ page_obj.previous_page_number }}" class="link" aria-label="Previous"><span aria-hidden="true">← Previous</span></a></span>
+        {% if page_obj.number > 3 %}
+        <span class="page-item"><a href="?page=1" class="link" aria-label="1"><span aria-hidden="true">1</span></a></span>
+            {% if page_obj.number > 4 %}
+            <span class="page-item"><span aria-hidden="true">...</span></span>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {% for num_page in page_obj.paginator.page_range %}
+        {% if num_page == page_obj.number %}
+        <span class="page-item"><span class="link active disabled" aria-label="{{ num_page }}"><span aria-hidden="true">{{ num_page }}</span></span></span>
+        {% elif num_page > page_obj.number|add:-3 and num_page < page_obj.number|add:3 %}
+        <span class="page-item"><a href="?page={{ num_page }}" class="link" aria-label="{{ num_page }}"><span aria-hidden="true">{{ num_page }}</span></a></span>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        {% if page_obj.number < page_obj.paginator.num_pages|add:-3 %}
+        <span class="page-item"><span aria-hidden="true">...</span></span>
+        <span class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="link" aria-label="{{ page_obj.paginator.num_pages }}"><span aria-hidden="true">{{ page_obj.paginator.num_pages }}</span></a></span>
+        {% elif page_obj.number < page_obj.paginator.num_pages|add:-2 %}
+        <span class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="link" aria-label="{{ page_obj.paginator.num_pages }}"><span aria-hidden="true">{{ page_obj.paginator.num_pages }}</span></a></span>
+        {% endif %}
+        <span class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="link" aria-label="Next"><span aria-hidden="true">Next →</span></a></span>
+    {% endif %}
+    </ul>
+</nav>
