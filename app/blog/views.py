@@ -21,7 +21,7 @@ class PostListView(DataMixin, ListView):
 
     def get_queryset(self):
         """Return the list of items for this view."""
-        return Post.objects.filter(is_published=True)
+        return Post.objects.filter(is_published=True).select_related("category")
 
 
 class PostDetailView(DataMixin, DetailView):
