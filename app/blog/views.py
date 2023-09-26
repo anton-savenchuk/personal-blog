@@ -2,38 +2,29 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
 from .models import Category, Post
-
-PAGINATION_RANGE = 3
-
-menu = [
-    {"title": "/Все посты", "url_name": "home"},
-    {"title": "/О сайте", "url_name": "home"},
-    {"title": "/Обратная связь", "url_name": "home"},
-]
+from .utils import DataMixin
 
 
-class PostListView(ListView):
+class PostListView(DataMixin, ListView):
     """Post model view."""
 
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts"
-    paginate_by = PAGINATION_RANGE
 
     def get_context_data(self, **kwargs):
         """Return a dictionary to use as a template context."""
         context = super().get_context_data(**kwargs)
-        context["title"] = "Все посты"
-        context["menu"] = menu
+        user_context = self.get_user_context(title="Все посты")
 
-        return context
+        return context | user_context
 
     def get_queryset(self):
         """Return the list of items for this view."""
         return Post.objects.filter(is_published=True)
 
 
-class PostDetailView(DetailView):
+class PostDetailView(DataMixin, DetailView):
     """Single post model view."""
 
     model = Post
@@ -44,28 +35,27 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         """Return a dictionary to use as a template context."""
         context = super().get_context_data(**kwargs)
-        context["title"] = self.object.title
-        context["menu"] = menu
+        user_context = self.get_user_context(title=self.object.title)
 
-        return context
+        return context | user_context
 
 
-class CategoryPostListView(ListView):
+class CategoryPostListView(DataMixin, ListView):
     """Category post model view."""
 
     model = Post
     template_name = "blog/post_list.html"
     context_object_name = "posts"
     allow_empty = False
-    paginate_by = PAGINATION_RANGE
 
     def get_context_data(self, **kwargs):
         """Return a dictionary to use as a template context."""
         context = super().get_context_data(**kwargs)
-        context["title"] = f"Посты из категории: {self.category.title}"
-        context["menu"] = menu
+        user_context = self.get_user_context(
+            title=f"Посты из категории: {self.category.title}",
+        )
 
-        return context
+        return context | user_context
 
     def get_queryset(self):
         """Return the list of items for this view."""
