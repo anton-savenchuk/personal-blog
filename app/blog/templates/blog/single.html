@@ -23,6 +23,16 @@
             {% endif %}
             {{ post.full_description|safe }}
         </section>
+        {% if post.tag.exists %}
+        <div class="meta">
+            <span class="post-tags-inline">
+                :: tags:
+                {% for tag in post.tag.all %}
+                <a class="post-tag" href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
+                {% endfor %}
+            </span>
+        </div>
+        {% endif %}
     </article>
 </main>
 {% endblock %}

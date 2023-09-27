@@ -56,6 +56,12 @@ class Post(models.Model):
         db_index=True,
         verbose_name="Категория",
     )
+    tag = models.ManyToManyField(
+        to="Tag",
+        blank=True,
+        db_index=True,
+        verbose_name="тег",
+    )
 
     class Meta:
         """Sorting, model name in the admin panel, table with data."""
@@ -103,3 +109,34 @@ class Category(models.Model):
     def get_absolute_url(self):
         """Return category url."""
         return reverse("category", kwargs={"category_slug": self.slug})
+
+
+class Tag(models.Model):
+    """Tag model."""
+
+    title = models.CharField(
+        max_length=60,
+        db_index=True,
+        verbose_name="тег",
+    )
+    slug = models.SlugField(
+        max_length=60,
+        unique=True,
+        db_index=True,
+        verbose_name="url tag",
+    )
+
+    class Meta:
+        """Sorting, model name in the admin panel, table with data."""
+
+        verbose_name = "тег"
+        verbose_name_plural = "теги"
+        ordering = ["title"]
+
+    def __str__(self):
+        """Return the string representation of the object as the tag title."""
+        return self.title
+
+    def get_absolute_url(self):
+        """Return tag url."""
+        return reverse("tag", kwargs={"tag_slug": self.slug})

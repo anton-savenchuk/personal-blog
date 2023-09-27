@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
-from .models import Category, Post
+from .models import Category, Post, Tag
 from .utils import DataMixin
 
 
@@ -21,7 +21,11 @@ class PostListView(DataMixin, ListView):
 
     def get_queryset(self):
         """Return the list of items for this view."""
-        return Post.objects.filter(is_published=True).select_related("category")
+        return (
+            Post.objects.filter(is_published=True)
+            .select_related("category")
+            .prefetch_related("tag")
+        )
 
 
 class PostDetailView(DataMixin, DetailView):
@@ -61,7 +65,43 @@ class CategoryPostListView(DataMixin, ListView):
         """Return the list of items for this view."""
         self.category = Category.objects.get(slug=self.kwargs["category_slug"])
 
-        return Post.objects.all().filter(
-            category__slug=self.category.slug,
-            is_published=True,
+        return (
+            Post.objects.all()
+            .filter(
+                category__slug=self.category.slug,
+                is_published=True,
+            )
+            .select_related("category")
+            .prefetch_related("tag")
+        )
+
+
+class TagPostListView(DataMixin, ListView):
+    """Tag post model view."""
+
+    model = Post
+    template_name = "blog/post_list.html"
+    context_object_name = "posts"
+    allow_empty = False
+
+    def get_context_data(self, **kwargs):
+        """Return a dictionary to use as a template context."""
+        context = super().get_context_data(**kwargs)
+        user_context = self.get_user_context(
+            title=f"Посты по тегу: {self.tag.title}",
+        )
+
+        return context | user_context
+
+    def get_queryset(self):
+        """Return the list of items for this view."""
+        self.tag = Tag.objects.get(slug=self.kwargs["tag_slug"])
+        return (
+            Post.objects.all()
+            .filter(
+                tag__slug=self.tag.slug,
+                is_published=True,
+            )
+            .select_related("category")
+            .prefetch_related("tag")
         )
