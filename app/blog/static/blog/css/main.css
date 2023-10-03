@@ -386,6 +386,12 @@ pre code[class*='language-md']::before {
     content: 'Markdown';
 }
 
+pre code[class*='language-sql']::before,
+pre code[class*='language-pgsql']::before,
+pre code[class*='language-postgresql']::before {
+    content: 'SQL';
+}
+
 /* table */
 table {
     border-spacing: 0;

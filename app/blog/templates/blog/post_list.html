@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block title %}{{ title }}{% endblock%}
+{% load markdown_extras %}
 
 {% block content %}
     <div class="title">
@@ -30,7 +31,7 @@
                 {% endif %}
             </div>
             <div class="description">
-            {{ post.short_description|safe|truncatewords_html:45 }}
+            {{ post.short_description|markdown|truncatewords_html:45 }}
             </div>
             <a class="link" href="{{ post.get_absolute_url }}">Читать дальше →</a>
         </section>

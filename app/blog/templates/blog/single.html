@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block title %}{{ post.title }}{% endblock%}
+{% load markdown_extras %}
 
 {% block content %}
 <main>
@@ -21,7 +22,7 @@
             {% if post.thumbnail %}
             <figure><img src="{{ post.thumbnail.url }}" alt="{{ post.title }}"></figure>
             {% endif %}
-            {{ post.full_description|safe }}
+            {{ post.full_description|markdown }}
         </section>
         {% if post.tag.exists %}
         <div class="meta">
