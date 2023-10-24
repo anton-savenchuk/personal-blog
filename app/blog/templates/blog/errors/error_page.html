@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ title }}{% endblock%}
+
+{% block content %}
+    <div class="title">
+        <h1 class="page-header">{{ title }}</h1>
+    </div>
+    <main class="list">
+        <section class="list-item">
+            <div class="description">
+                {{ error_message }} | <a href="{% url 'home' %}"><strong>Вернуться на главную</strong></a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

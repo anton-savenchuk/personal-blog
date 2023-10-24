@@ -20,6 +20,11 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+handler400 = "blog.views.badRequest"
+handler403 = "blog.views.pageForbidden"
+handler404 = "blog.views.pageNotFound"
+handler500 = "blog.views.internalServerError"
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("blog.urls")),

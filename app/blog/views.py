@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
 from .models import Category, Post, Tag
-from .utils import DataMixin
+from .utils import DataMixin, menu
 
 
 class PostListView(DataMixin, ListView):
@@ -105,3 +105,59 @@ class TagPostListView(DataMixin, ListView):
             .select_related("category")
             .prefetch_related("tag")
         )
+
+
+def badRequest(request, exception):
+    """Handle 400 error."""
+    return render(
+        request=request,
+        template_name="blog/errors/error_page.html",
+        status=400,
+        context={
+            "title": "Bad request: 400",
+            "menu": menu,
+            "error_message": "Неправильный запрос.",
+        },
+    )
+
+
+def pageForbidden(request, exception):
+    """Handle 403 error."""
+    return render(
+        request=request,
+        template_name="blog/errors/error_page.html",
+        status=403,
+        context={
+            "title": "Page forbidden: 403",
+            "menu": menu,
+            "error_message": "Доступ к этой странице ограничен.",
+        },
+    )
+
+
+def pageNotFound(request, exception):
+    """Handle 404 error."""
+    return render(
+        request=request,
+        template_name="blog/errors/error_page.html",
+        status=404,
+        context={
+            "title": "Page not found: 404",
+            "menu": menu,
+            "error_message": "К сожалению такая страница не найдена, или перемещена.",
+        },
+    )
+
+
+def internalServerError(request):
+    """Handle 500 error."""
+    return render(
+        request=request,
+        template_name="blog/errors/error_page.html",
+        status=500,
+        context={
+            "title": "Internal Server Error: 500",
+            "menu": menu,
+            "error_message": "Внутренняя ошибка сайта, вернитесь на главную страницу, отчёт об ошибке направлен администрации сайта.",
+        },
+    )

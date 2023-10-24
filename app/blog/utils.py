@@ -3,7 +3,6 @@ from core.settings import PAGINATION_RANGE
 menu = [
     {"title": "/Все посты", "url_name": "home"},
     {"title": "/О сайте", "url_name": "home"},
-    {"title": "/Обратная связь", "url_name": "home"},
 ]
 
 
