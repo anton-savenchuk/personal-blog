@@ -20,6 +20,7 @@
                     {{ post.time_update|date:"d.m.y" }}
                 {% endif %}
                 </time>
+                <span>| {{ post.get_time_read }} minute read </span>
                 <span>| category: <a class="post-category" href="{{ post.category.get_absolute_url }}">{{ post.category.title }}</a></span>
                 {% if post.tag.exists %}
                 <span class="post-tags-inline">

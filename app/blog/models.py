@@ -79,6 +79,13 @@ class Post(models.Model):
         """Return post url."""
         return reverse("post", kwargs={"post_slug": self.slug})
 
+    def get_time_read(self):
+        """Return the read time as minutes of some plain text."""
+        total_words = len(self.full_description.split())
+        time_read = round(total_words / 180)
+
+        return 1 if time_read == 0 else time_read
+
 
 class Category(models.Model):
     """Category model."""
