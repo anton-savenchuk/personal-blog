@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
@@ -105,6 +106,26 @@ class TagPostListView(DataMixin, ListView):
             .select_related("category")
             .prefetch_related("tag")
         )
+
+
+def get_about_page(request):
+    """About page."""
+    headers = {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+    }
+    url = "https://raw.githubusercontent.com/anton-savenchuk/anton-savenchuk/main/README.md"
+    description = requests.get(url, headers=headers, timeout=6).text
+
+    return render(
+        request=request,
+        template_name="blog/static.html",
+        context={
+            "title": "Обо мне",
+            "menu": menu,
+            "description": description,
+        },
+    )
 
 
 def badRequest(request, exception):

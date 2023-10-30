@@ -34,6 +34,12 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS").split()
 
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split()
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": BASE_DIR / "django_cache",
+    },
+}
 
 # Application definition
 

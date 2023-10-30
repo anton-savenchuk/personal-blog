@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ title }}{% endblock%}
+{% load markdown_extras %}
+
+{% block content %}
+    <div class="title">
+        <h1 class="page-header">{{ title }}</h1>
+    </div>
+    <main class="list">
+        <section class="list-item">
+            <div class="description">
+                {{ description|markdown }}
+            </div>
+        </section>
+    </main>
+{% endblock %}
