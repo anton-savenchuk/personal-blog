@@ -1,0 +1,73 @@
+version: '3.8'
+
+volumes:
+  postgres_data:
+  static_data:
+  media_data:
+
+networks:
+  blog_net:
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django
+    restart: always
+    ports:
+      - '8000:8000'
+    networks:
+      - blog_net
+    env_file:
+      - ./app/env/.env.prod
+    volumes:
+      - static_data:/opt/personal-blog/app/static
+      - media_data:/opt/personal-blog/app/media
+    depends_on:
+      - postgres
+    command: sh -c 'poetry run python manage.py collectstatic --no-input &&
+                    poetry run python manage.py makemigrations &&
+                    poetry run python manage.py migrate &&
+                    poetry run gunicorn core.wsgi:application --bind 0.0.0.0:8000'
+
+  postgres:
+    image: postgres:alpine
+    container_name: postgres
+    restart: always
+    env_file:
+      - ./app/env/.env.prod
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - blog_net
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - blog_net
+    volumes:
+      - static_data:/opt/personal-blog/app/static
+      - media_data:/opt/personal-blog/app/media
+      - ./docker/nginx/prod/:/etc/nginx/conf.d:ro
+      - ./docker/certbot/conf:/etc/letsencrypt:ro
+      - ./docker/certbot/www:/var/www/certbot:ro
+    links:
+      - django
+    depends_on:
+      - django
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+        - ./docker/certbot/conf:/etc/letsencrypt:rw
+        - ./docker/certbot/www:/var/www/certbot:rw
+    command: certonly --webroot --webroot-path=/var/www/certbot/ --email Anton.Savenchuk@gmail.com --agree-tos --no-eff-email -d learnpy.ru -d www.learnpy.ru
+    depends_on:
+      - nginx

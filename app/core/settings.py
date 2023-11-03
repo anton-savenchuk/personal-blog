@@ -95,11 +95,11 @@ WSGI_APPLICATION = "core.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": env("POSTGRESQL_DB"),
-        "USER": env("POSTGRESQL_USER"),
-        "PASSWORD": env("POSTGRESQL_PASSWORD"),
-        "HOST": env("POSTGRESQL_HOST"),
-        "PORT": env("POSTGRESQL_PORT"),
+        "NAME": env("POSTGRES_DB"),
+        "USER": env("POSTGRES_USER"),
+        "PASSWORD": env("POSTGRES_PASSWORD"),
+        "HOST": env("POSTGRES_HOST"),
+        "PORT": env("POSTGRES_PORT"),
     },
 }
 
@@ -128,7 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Krasnoyarsk"
 
 USE_I18N = True
 

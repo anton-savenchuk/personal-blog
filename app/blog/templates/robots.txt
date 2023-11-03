@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /category
+Disallow: /tag
+Disallow: /?page=*
+Disallow: /?search=*
+Disallow: /?search=*&page=*
+Disallow: /assets
+Disallow: /api
+Disallow: /panel
+Disallow: /search
+Disallow: /static
+Disallow: /media
+
+Sitemap: https://learnpy.ru/sitemap.xml
