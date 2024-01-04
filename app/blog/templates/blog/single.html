@@ -9,10 +9,9 @@
             <h1 class="title page-header">{{ post.title }}</h1>
             <div class="meta">
                 <time>
-                {% if post.time_create|date:"d.m.y" == post.time_update|date:"d.m.y" %}
-                Posted on {{ post.time_create|date:"d.m.y" }}
-                {% else %}
-                Updated on {{ post.time_update|date:"d.m.y" }}
+                Posted on {{ post.time_create|date:"d.m.Y H:i" }}
+                {% if post.time_create|date:"d.m.Y H:i" < post.time_update|date:"d.m.Y H:i" %}
+                / Updated on <i class="bi bi-pencil"></i> {{ post.time_update|date:"d.m.Y H:i" }}
                 {% endif %}
                 </time>
                 <span>| {{ post.get_time_read }} minute read </span>

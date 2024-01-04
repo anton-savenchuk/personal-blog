@@ -14,10 +14,9 @@
             </h2>
             <div class="meta">
                 <time>
-                {% if post.time_create|date:"d.m.y" == post.time_update|date:"d.m.y" %}
-                    {{ post.time_create|date:"d.m.y" }}
-                {% else %}
-                    {{ post.time_update|date:"d.m.y" }}
+                {{ post.time_create|date:"d.m.Y H:i" }}
+                {% if post.time_create|date:"d.m.Y H:i" < post.time_update|date:"d.m.Y H:i" %}
+                / <i class="bi bi-pencil"></i> {{ post.time_update|date:"d.m.Y H:i" }}
                 {% endif %}
                 </time>
                 <span>| {{ post.get_time_read }} minute read </span>

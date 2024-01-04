@@ -361,6 +361,14 @@ pre code[class*='language-sh']::before {
     content: 'Shell';
 }
 
+pre code[class*='language-nginx']::before {
+    content: 'Nginx';
+}
+
+pre code[class*='language-dockerfile']::before {
+    content: 'Dockerfile';
+}
+
 pre code[class*='language-json']::before {
     content: 'JSON';
 }
