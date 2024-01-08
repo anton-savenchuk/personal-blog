@@ -11,4 +11,4 @@ Disallow: /search
 Disallow: /static
 Disallow: /media
 
-Sitemap: https://learnpy.ru/sitemap.xml
+Sitemap: https://<domain_name>/sitemap.xml

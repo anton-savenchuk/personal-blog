@@ -24,7 +24,6 @@ logs/
 *.bak
 
 # Docker
-docker-compose.*.yml
 docker/
 
 # Environments
