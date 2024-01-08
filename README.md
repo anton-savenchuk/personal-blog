@@ -1,5 +1,8 @@
 # A personal blog, the first step in Django.
 
+
+![](/screenshot.png)
+
 If you are taking the first steps in **Django**, go step by step to the release of this project based on **[learnpy.ru](https://learnpy.ru/)*** posts.
 
 If you're just poking with a stick, follow the instructions below.
