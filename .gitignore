@@ -24,7 +24,7 @@ logs/
 *.bak
 
 # Docker
-docker/
+docker/nginx/prod
 
 # Environments
 .env/
